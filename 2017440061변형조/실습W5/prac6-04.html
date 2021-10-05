@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prompt</title>
+</head>
+<body>
+    <script>
+        let day = prompt("월화수목금토일 중에서 입력하세요");
+        switch(day){
+            case "월":
+                document.write(day+"는 출근");
+                break;
+            case "화":
+                document.write(day+"는 출근");
+                break;
+            case "수":
+                document.write(day+"는 출근");
+                break;
+            case "목":
+                document.write(day+"는 출근");
+                break;
+            case "금":
+                document.write(day+"는 휴일");
+                break;
+            case "토":
+                document.write(day+"는 휴일");
+                break;
+            case "일":
+            document.write(day+"는 휴일");
+            break;
+            default:
+                document.write(day+"는 없는 날입니다.");
+        }
+    </script>
+</body>
+</html>
