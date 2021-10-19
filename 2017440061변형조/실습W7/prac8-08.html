@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform:rotate()</title>
+</head>
+<body>
+<script>
+    let n = 2;
+    function spand(obj){
+        obj.style.transform = "scale("+n+",1)";
+        n = n + 1;
+    }
+</script>
+
+<h3>클릭하면 2,3,4배로 옆으로 늘어납니다.</h3>
+<hr>
+<img src="./media/spongebob.png" alt="스펀지밥" width="200px" onclick="spand(this)">
+</body>
+</html>
