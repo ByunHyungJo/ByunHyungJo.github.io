@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기 만들기</title>
+</head>
+<style>
+    div {
+        display : block;
+    }
+    button {
+        display : inline-block;
+    }
+</style>
+
+<script>
+    flag = 0;
+    function f(obj){
+        now = document.getElementById("display");
+        txt = now.value;
+        if (txt == "0" || flag == 1){
+            txt = "";
+            flag = 0;
+        }
+        if (obj.innerHTML == "BACK"){
+            txt = txt.slice(0,txt.length-1);
+            now.value = txt;
+            return;
+        }
+        if ((obj.innerHTML == "C")||(obj.innerHTML == "CE")){
+            now.value = "0";
+            return;
+        }
+        if (obj.innerHTML == "NONE"){
+            return;
+        }
+        if (obj.innerHTML == "="){
+            now.value = String(eval(txt));
+            flag = 1;
+            return;
+        }
+        txt = txt + obj.innerHTML;
+        now.value = txt;
+    }
+</script>
+
+<body>
+<h3>계산기 만들기</h3>
+<hr>
+<form>
+    <input id = "display" type="text" value="0" style="width : 310px">
+</form>
+<div>
+    <button style="width : 75px" onclick="f(this)">BACK</button>
+    <button style="width : 75px" onclick="f(this)">CE</button>
+    <button style="width : 75px" onclick="f(this)">C</button>
+    <button style="width : 75px" onclick="f(this)">=</button>
+</div>
+<div>
+    <button style="width : 75px" onclick="f(this)">7</button>
+    <button style="width : 75px" onclick="f(this)">8</button>
+    <button style="width : 75px" onclick="f(this)">9</button>
+    <button style="width : 75px" onclick="f(this)">/</button>
+</div>
+<div>
+    <button style="width : 75px" onclick="f(this)">4</button>
+    <button style="width : 75px" onclick="f(this)">5</button>
+    <button style="width : 75px" onclick="f(this)">6</button>
+    <button style="width : 75px" onclick="f(this)">*</button>
+</div>
+<div>
+    <button style="width : 75px" onclick="f(this)">1</button>
+    <button style="width : 75px" onclick="f(this)">2</button>
+    <button style="width : 75px" onclick="f(this)">3</button>
+    <button style="width : 75px" onclick="f(this)">-</button>
+</div>
+<div>
+    <button style="width : 75px" onclick="f(this)">0</button>
+    <button style="width : 75px" onclick="f(this)">+</button>
+    <button style="width : 75px" onclick="f(this)">NONE</button>
+    <button style="width : 75px" onclick="f(this)">NONE</button>
+</div>
+
+</body>
+</html>
