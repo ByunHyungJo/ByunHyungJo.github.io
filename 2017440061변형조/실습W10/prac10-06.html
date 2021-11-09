@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>setInterval()/clearInterval()</title>
+<style>
+div {
+	display : inline-block;
+	width : 7em;
+	border : 1px solid gray;
+	background-color : aliceblue;
+	
+}
+</style>
+<script>
+
+function startClock() {
+    let flag = 0;
+	let clock = document.getElementById("clock");
+    timerID = setInterval("timer(clock)", 100);
+    clock.onclick = function(e){
+        if (flag == 0){
+            clearInterval(timerID);
+            clock.style.color = 'gray';
+            flag = 1;
+        }
+        else{
+            timerID = setInterval("timer(clock)", 100);
+            clock.style.color = 'black';
+            flag = 0;
+        }
+        
+    }
+}
+
+function timer(obj){
+    var current = new Date();
+	obj.innerHTML = current.toLocaleTimeString()
+}
+
+</script>
+</head>
+<body onload="startClock()">
+<h3>div 태그에 시계 만들기</h3>
+<hr>
+<div id="clock"></div>
+</body>
+</html>
+
