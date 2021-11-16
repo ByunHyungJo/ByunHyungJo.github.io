@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+            xhttp.onreadystatechange = function() { //프로퍼티 생성(함수)
+                if(this.readyState == 4 && this.status == 200){
+                document.getElementById("demo").innerHTML = this.responseText;
+                }
+            }
+            //asynchronouse True: 작업이 끝나면 callback
+            xhttp.open("GET", "ajax_info.txt", true); //xhttp객체 메소드 호출
+            xhttp.send();//xhttp객체의 메소드 호출
+        }
+    </script>
+</head>
+<body>
+    <div id="demo">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+    </div>
+</body>
+</html>

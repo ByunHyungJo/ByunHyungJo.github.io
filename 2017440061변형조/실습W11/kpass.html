@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<style>
+    table,th,td {
+        border : 1px solid black;
+        border-collapse: collapse;
+    }
+    th,td {
+        padding: 5px;
+    }
+</style>
+<body>
+<h1>재난문자 현황</h1>
+
+<button type="button" onclick="loadDoc()">재난문자 확인하기</button>
+<br><br>
+<table id="disaster"></table>
+</body>
+
+<script>
+    function loadDoc(){
+        var xhr = new XMLHttpRequest();
+        var url = 'http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List'; /*URL*/
+        var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'qlZbl32c93Xg3kzmvwouzkCFGDViSRH%2Fheq2JQEZ3o%2BSyYLCws8Y2oX%2FMjYF3HOvGQkC1ni%2FW5kWilcNYKR0bg%3D%3D'; /*Service Key*/
+        queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+        queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+        queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
+        xhr.open('GET', url + queryParams);
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xhr.send('');
+    }
+    
+    function myFunction(xml) {
+        var i;
+        var xmlDoc = xml.responseXML;
+        var table="<tr><th>날짜</th><th>지역</th><th>내용</th></tr>";
+        let date = xmlDoc.getElementsByTagName("create_date");
+        var loc = xmlDoc.getElementsByTagName("location_name");
+        let msg = xmlDoc.getElementsByTagName("msg");
+        for (i = 0; i <loc.length; i++) { 
+            table += "<tr><td>" +
+            date[i].innerHTML+
+            "</td><td>"+
+            loc[i].innerHTML+
+            "</td><td>" +
+            msg[i].innerHTML+
+            "</td></tr>";
+        }
+        document.getElementById("disaster").innerHTML = table;
+    }
+</script>
+</html>
