@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>NaverGeoJSONE</title>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=besgcxdew4"></script>
+    <!--<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=besgcxdew4"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=besgcxdew4&submodules=geocoder"></script>
 </head>
 
 <body>
@@ -20,6 +20,19 @@ var map = new naver.maps.Map(document.getElementById('map'), {
     mapTypeId: 'normal',
     center: new naver.maps.LatLng(37.3586524, 127.1060678)
 });
+
+naver.maps.Service.geocode({
+        query: '불정로 6'
+    }, function(status, response) {
+        if (status !== naver.maps.Service.Status.OK) {
+            return alert(status);
+        }
+
+        var result = response.v2, // 검색 결과의 컨테이너
+            items = result.addresses; // 검색 결과의 배열
+
+        alert(items[0].roadAddress);
+    });
 
 </script>
 </body>
