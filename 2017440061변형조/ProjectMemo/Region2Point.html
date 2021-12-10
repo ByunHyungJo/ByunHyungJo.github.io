@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>NaverGeoJSONE</title>
+    <title>재난문자 지도</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=besgcxdew4&submodules=geocoder"></script>
 </head>
@@ -31,7 +31,6 @@
 <script>
 var markers = [];
 var InfoList = [];
-var num_info = 5;
 
 function eraseForm(){
     document.getElementById("text").value = "";
@@ -43,7 +42,7 @@ function allInfo(){
     var url = 'http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'qlZbl32c93Xg3kzmvwouzkCFGDViSRH%2Fheq2JQEZ3o%2BSyYLCws8Y2oX%2FMjYF3HOvGQkC1ni%2FW5kWilcNYKR0bg%3D%3D'; /*Service Key*/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent(num_info); /**/
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
     queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
     xhr.open('GET', url + queryParams);
     xhr.onreadystatechange = function () {
@@ -60,7 +59,7 @@ function localInfo(){
     var url = 'http://apis.data.go.kr/1741000/DisasterMsg4/getDisasterMsg2List'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'qlZbl32c93Xg3kzmvwouzkCFGDViSRH%2Fheq2JQEZ3o%2BSyYLCws8Y2oX%2FMjYF3HOvGQkC1ni%2FW5kWilcNYKR0bg%3D%3D'; /*Service Key*/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent(num_info); /**/
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('20'); /**/
     queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
     queryParams += '&' + encodeURIComponent('create_date') + '=' + encodeURIComponent('2021/06/22 00:00:00'); /**/
     queryParams += '&' + encodeURIComponent('location_name') + '=' + encodeURIComponent(region); /**/
