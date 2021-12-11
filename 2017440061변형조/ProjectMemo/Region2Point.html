@@ -37,7 +37,7 @@ function eraseForm(){
 }
 
 function allInfo(){
-    alert("로딩중... 잠시만 기다려주세요.");
+    alert("로딩중... 확인을 누른 후 잠시만 기다려주세요.");
     var xhr = new XMLHttpRequest();
     var url = 'http://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'qlZbl32c93Xg3kzmvwouzkCFGDViSRH%2Fheq2JQEZ3o%2BSyYLCws8Y2oX%2FMjYF3HOvGQkC1ni%2FW5kWilcNYKR0bg%3D%3D'; /*Service Key*/
@@ -86,7 +86,7 @@ function printInfo(xml) {
 
     var i, j;
     var xmlDoc = xml.responseXML;
-    var table="<tr><th>날짜</th><th>지역</th><th>내용</th></tr>";
+    //var table="<tr><th>날짜</th><th>지역</th><th>내용</th></tr>";
     let date = xmlDoc.getElementsByTagName("create_date");
     var loc = xmlDoc.getElementsByTagName("location_name");
     let msg = xmlDoc.getElementsByTagName("msg");
@@ -101,7 +101,11 @@ function printInfo(xml) {
 
             contentString = date[i].innerHTML +"</br>"+ loc[i].innerHTML +"</br>"+ msg[i].innerHTML;
             var infowindow = new naver.maps.InfoWindow({
-            content: contentString
+            content: contentString,
+            maxWidth: 420,
+            backgroundColor: "#E6E6E6",
+            borderColor: "#F78181",
+            borderWidth: 3
             });
             InfoList[InfoList.length] = infowindow;
             markPin(location,infowindow);
